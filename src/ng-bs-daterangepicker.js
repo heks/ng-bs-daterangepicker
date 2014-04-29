@@ -6,7 +6,8 @@
 (function (angular) {
 'use strict';
 
-angular.module('ngBootstrap', []).directive('input', function ($compile, $parse) {
+angular.module('ngBootstrap', [])
+.directive('input',['$parse', function ($parse) {
 	return {
 		restrict: 'E',
 		require: '?ngModel',
@@ -21,7 +22,21 @@ angular.module('ngBootstrap', []).directive('input', function ($compile, $parse)
 			options.dateLimit = $attributes.limit && moment.duration.apply(this, $attributes.limit.split(' ').map(function (elem, index) { return index === 0 && parseInt(elem, 10) || elem; }) );
 			options.ranges = $attributes.ranges && $parse($attributes.ranges)($scope);
 			options.locale = $attributes.locale && $parse($attributes.locale)($scope);
-			options.opens = $attributes.opens && $parse($attributes.opens)($scope);
+
+			$attributes.$observe('opens',function(nV) {
+				console.log(nV)
+				options.opens = nV || "right";
+				$element.daterangepicker(options, function(start, end) {
+					$scope.$apply(function () {
+						ngModel.$setViewValue({ startDate: start, endDate: end });
+						ngModel.$render();
+					});
+				});	
+			});
+
+			$scope.$on('$destroy', function() {
+				$(".daterangepicker").remove();
+			});
 
 			function format(date) {
 				return date.format(options.format);
@@ -55,16 +70,9 @@ angular.module('ngBootstrap', []).directive('input', function ($compile, $parse)
 				$element.data('daterangepicker').updateView();
 				$element.data('daterangepicker').updateCalendars();
 				$element.data('daterangepicker').updateInputText();
-			});
-
-			$element.daterangepicker(options, function(start, end) {
-				$scope.$apply(function () {
-					ngModel.$setViewValue({ startDate: start, endDate: end });
-					ngModel.$render();
-				});
-			});			
+			});		
 		}
 	};
-});
+}]);
 
 })(angular);
