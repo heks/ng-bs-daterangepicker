@@ -1,9 +1,9 @@
 {
-  "name": "ng-bs-daterangepicker",
+  "name": "ng-bs-daterangepicker-heks",
   "description": "AngularJS directive for bootstrap-daterangepicker",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "filename": "./src/ng-bs-daterangepicker.js",
-  "homepage": "http://github.com/luisfarzati/ng-bs-daterangepicker",
+  "homepage": "http://github.com/heks/ng-bs-daterangepicker",
   "author": {
     "name": "Luis Farzati",
     "email": "lfarzati@gmail.com",
