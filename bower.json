@@ -9,5 +9,19 @@
   },
   "devDependencies": {
     "angular-mocks": ">= 1.0.7"
-  }
+  },
+  "homepage": "https://github.com/heks/ng-bs-daterangepicker",
+  "description": "for telekom-admin",
+  "keywords": [
+    "daterangepicker"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/components",
+    "test",
+    "tests"
+  ]
 }
