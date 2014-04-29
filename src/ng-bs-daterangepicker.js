@@ -24,7 +24,6 @@ angular.module('ngBootstrap', [])
 			options.locale = $attributes.locale && $parse($attributes.locale)($scope);
 
 			$attributes.$observe('opens',function(nV) {
-				console.log(nV)
 				options.opens = nV || "right";
 				$element.daterangepicker(options, function(start, end) {
 					$scope.$apply(function () {
